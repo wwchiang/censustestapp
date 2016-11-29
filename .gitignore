@@ -1,0 +1,5 @@
+data/*
+node_modules/*
+public/*
+.idea/*
+server/apikey_local.js
