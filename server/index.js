@@ -151,7 +151,7 @@ function onRequestsDone(res, data, codeHashMap, mediansHashMap, countyCode, stat
     medianNonFamilies: mediansHashMap.nonfamily
   };
   
-  res.send(JSON.stringify(documentData));
+  res.send(documentData);
 }
 
 app.get('/counties', function (req, res) {
