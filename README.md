@@ -1,8 +1,12 @@
 # Census Test Project
-Test project for front end development that starts with a basic prebuilt backend that serves some census data through a REST API.
 
-## Description
-The Node back end pulls data from the [US Census American Community Survey API](http://api.census.gov/data/2014/acs1/profile.html) and serves it in a more user-friendly format.
+To get a sense of your coding style and ability, without the pressure of coding on a whiteboard during an interview, we have a take-home coding assignment for you. We'd like to see what you can get done in around 2 or 3 hours on the following project.
+
+## Instructions
+
+Download/clone this repo (https://github.com/pepperdata/censustestapp) and complete your work on your local copy. You are free to build any UI you like around the existing census income data app. But if you'd like a more directed assignment, imagine that users want a way to compare their household income to the incomes of others in their county and state. You are free to use any external libraries and tools you like. Please tar or zip your solution and send it to us before you come in for an interview.
+
+This repo comes with an existing Node back end that pulls data from the [US Census American Community Survey API](http://api.census.gov/data/2014/acs1/profile.html) and serves it in a more user-friendly format.  See below for more details.
 
 ## Getting started
 1. Run `npm install` or `yarn install`
@@ -63,7 +67,3 @@ Min is the minimum income for that bracket, max is the maximum, and households i
 - **incomeDataNonFamilies** only includes non-family households
 
 The returned JSON object also contains median incomes (a single value) for all 3 groups.
-
-## Instructions
-
-Come up with a UI to allow users to easily browse and interpret as much of this data as possible.  You don't have to use every option in the API and can focus on what would be most useful or interesting.
