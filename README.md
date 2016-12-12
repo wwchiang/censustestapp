@@ -10,7 +10,7 @@ This repo comes with an existing Node back end that pulls data from the [US Cens
 
 ## Getting started
 1. Run `npm install` or `yarn install`
-2. Request an API key from http://api.census.gov/data/key_signup.html
+2. Request an API key from http://api.census.gov/data/key_signup.html. (Be sure to activate your key by clicking on the link in the email).
 3. Find this line in server/index.js (not to be confused with client/scripts/index.js):
 
         const APIkey = require('./apikey_local');
