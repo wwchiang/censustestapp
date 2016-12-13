@@ -44,7 +44,16 @@ module.exports = function(grunt) {
         }]
       }
     },
-
+    compress: {
+      main: {
+        options: {
+          archive: "public/census-app.zip"
+        },
+        files: {
+          ".": ['**/*', '!.idea/**/*', '!node_modules/**/*', '!public/**/*', "!.gitignore"]
+        }
+      }
+    },
     shell: {
       nodemon: {
           command: './node_modules/nodemon/bin/nodemon.js --harmony server/index.js'
@@ -71,7 +80,7 @@ module.exports = function(grunt) {
         }
       },
       "client-dev": {
-        src: ['client/scripts/index.js'],
+        src: ['client/scripts/**/*.js'],
         dest: 'public/scripts/app.build.js',
         options: {
           watch: true,

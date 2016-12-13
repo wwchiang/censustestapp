@@ -53,4 +53,4 @@ const STATES = [
   {name: "Puerto Rico", code: "72"}
 ];
 
-export default STATES;
+module.exports = STATES;

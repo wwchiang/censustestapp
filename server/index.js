@@ -150,7 +150,7 @@ function onRequestsDone(res, data, codeHashMap, mediansHashMap, countyCode, stat
     medianFamilies: mediansHashMap.family,
     medianNonFamilies: mediansHashMap.nonfamily
   };
-  
+  res.set('Content-Type', 'application/json');
   res.send(documentData);
 }
 
