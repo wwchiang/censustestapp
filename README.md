@@ -4,11 +4,17 @@ To get a sense of your coding style and ability, without the pressure of coding 
 
 ## Requirements
   1) Create a single page where the user can input their state, county, and income.
+  
   2) When the user submits the form, produce a visualization of the user's income compared to the income brackets of all others within the county.
+  
   3) The client html file can be found here: `client/index.html` and the script here: `client/scripts/index.js`.
+  
   4) Don't spend much time tweaking CSS. For an assignment of this length we expect the result to be more functional than beautiful.
+  
   5) The page must work on the latest Chrome (you don't need to worry about older browsers)
-  6) JQuery and Lodash libraries are included for your convenience in `client/scripts/index.js`. You can use other libraries if you wish, just make sure that they referenced in the `package.json` and play nice with browserify.
+  
+  6) JQuery and Lodash libraries are included for your convenience in `client/scripts/index.js`. Using a visualization or graphing library isn't required for this task, but feel free to use one if you feel like it is necessary. Make sure that new libraries are referenced in the `package.json` and play nice with browserify.
+
 
 Sample mockup form:
 
