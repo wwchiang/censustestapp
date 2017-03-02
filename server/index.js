@@ -8,26 +8,11 @@ const app = express();
 const request = require('request');
 const bodyParser = require('body-parser');
 
-const APIkey = require('./apikey_local');
+const APIkey = 'require('./apikey_local')';
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-
-// Split first point into 2 points to smooth out beginning and have it start at 0
-//const zeroBracket = [{min: 0, max: 0, households: allBrackets[0].households * 0.25}];
-//allBrackets[0].households *= 0.75;
-function addTails(brackets) {
-  const zeroBracket = [{min: 0, max: 0, households: brackets[0].households * 0.25}];
-  brackets[0].households *= 0.75;
-  const lastBracket = brackets[brackets.length-1];
-  const highBracket = [{min: 225000, max: 225000, households: lastBracket.households * 0.25}];
-  const bracketsWithTails = zeroBracket
-      .concat(brackets.slice(0,-1))
-      .concat([{min: 205000, max: 205000, households: lastBracket.households * 0.75}])
-      .concat(highBracket);
-  return bracketsWithTails;
-}
 
 function getCountiesFromAPI(stateCode, stateName, res) {
   request({
@@ -143,9 +128,9 @@ function onRequestsDone(res, data, codeHashMap, mediansHashMap, countyCode, stat
   });
 
   const documentData = {
-    incomeDataAll: addTails(allHouseholds),
-    incomeDataFamilies: addTails(familyHouseholds),
-    incomeDataNonFamilies: addTails(nonFamilyHouseholds),
+    incomeDataAll: allHouseholds,
+    incomeDataFamilies: familyHouseholds,
+    incomeDataNonFamilies: nonFamilyHouseholds,
     medianAll: mediansHashMap.all,
     medianFamilies: mediansHashMap.family,
     medianNonFamilies: mediansHashMap.nonfamily
