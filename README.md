@@ -71,7 +71,8 @@ Results:
 
         const APIkey = 'myapikey12345';
 
-5. Run `npm start`
+5. Run `npm start` on linux/OSx run node_modules/grunt-cli/bin/grunt build && node server/index.js
+
 6. Navigate to `http://localhost:3000` in your browser.
 
 

@@ -56,7 +56,7 @@ module.exports = function(grunt) {
     },
     shell: {
       nodemon: {
-          command: './node_modules/nodemon/bin/nodemon.js --harmony server/index.js'
+          command: 'node_modules/nodemon/bin/nodemon.js --harmony server/index.js'
       }
     },
 
@@ -93,6 +93,21 @@ module.exports = function(grunt) {
             ]
           }
         }
+      },
+       "client-dev-build": {
+        src: ['client/scripts/**/*.js'],
+        dest: 'public/scripts/app.build.js',
+        options: {
+          watch: false,
+          keepAlive: true,
+          browserifyOptions: {
+            extensions: [".js", ".jsx"],
+            debug: true,
+            transform: [
+              ["babelify"]
+            ]
+          }
+        }
       }
     },
     watch: {
@@ -110,4 +125,5 @@ module.exports = function(grunt) {
     'browserify:client-dev']);
   grunt.registerTask('dev', ['clean', 'copy', 'concurrent:dev']);
 
+  grunt.registerTask('build', ['clean', 'copy', 'browserify:client-dev-build']);
 };
