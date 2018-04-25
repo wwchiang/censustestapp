@@ -8,7 +8,7 @@ exports.ALL_HOUSEHOLDS = [
   {code: 'DP03_0058E', min: 75000, max: 99999},
   {code: 'DP03_0059E', min: 100000, max: 149999},
   {code: 'DP03_0060E', min: 150000, max: 199999},
-  {code: 'DP03_0061E', min: 200000, max: 225000}
+  {code: 'DP03_0061E', min: 200000}
 ];
 exports.FAMILIES = [
   {code: 'DP03_0076E', min: 0, max: 9999},
@@ -20,7 +20,7 @@ exports.FAMILIES = [
   {code: 'DP03_0082E', min: 75000, max: 99999},
   {code: 'DP03_0083E', min: 100000, max: 149999},
   {code: 'DP03_0084E', min: 150000, max: 199999},
-  {code: 'DP03_0085E', min: 200000, max: 225000}
+  {code: 'DP03_0085E', min: 200000}
 ];
 exports.NONFAMILIES = [
   {code1: 'DP03_0052E', code2: 'DP03_0076E', min: 0, max: 9999},
@@ -32,7 +32,7 @@ exports.NONFAMILIES = [
   {code1: 'DP03_0058E', code2: 'DP03_0082E', min: 75000, max: 99999},
   {code1: 'DP03_0059E', code2: 'DP03_0083E', min: 100000, max: 149999},
   {code1: 'DP03_0060E', code2: 'DP03_0084E', min: 150000, max: 199999},
-  {code1: 'DP03_0061E', code2: 'DP03_0085E', min: 200000, max: 225000}
+  {code1: 'DP03_0061E', code2: 'DP03_0085E', min: 200000}
 ];
 exports.MEDIAN_CODES = {
   all: 'DP03_0062E',
