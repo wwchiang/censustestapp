@@ -145,5 +145,4 @@ class UserInformation extends React.Component {
   }
 }
 
-let domContainer = document.querySelector('#userInformation');
-ReactDOM.render(<UserInformation />, domContainer);
+module.exports = UserInformation;

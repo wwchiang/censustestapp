@@ -45,5 +45,4 @@ class IncomeVisualization extends React.Component {
   }
 }
 
-let domContainer = document.querySelector('#charts');
-ReactDOM.render(<IncomeVisualization />, domContainer);
+module.exports = IncomeVisualization;

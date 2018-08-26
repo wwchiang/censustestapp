@@ -193,5 +193,4 @@ var UserInformation = function (_React$Component) {
     return UserInformation;
 }(React.Component);
 
-var domContainer = document.querySelector('#userInformation');
-ReactDOM.render(React.createElement(UserInformation, null), domContainer);
+module.exports = UserInformation;
