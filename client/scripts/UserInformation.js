@@ -9,6 +9,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var states = require('../data/state-codes.js');
+var React = require('react');
+var ReactDOM = require('react-dom');
 
 var URL = Object.freeze({
     BASE: 'http://localhost:3000/',
@@ -55,6 +57,7 @@ var UserInformation = function (_React$Component) {
 
         _this.handleStateSelect = _this.handleStateSelect.bind(_this);
         _this.handleCountySelect = _this.handleCountySelect.bind(_this);
+        _this.updateVisualization = _this.updateVisualization.bind(_this);
         return _this;
     }
 
@@ -66,10 +69,10 @@ var UserInformation = function (_React$Component) {
     }, {
         key: 'handleStateSelect',
         value: function handleStateSelect(event) {
-            var clickedState = event.target.value;
+            var stateCode = event.target.value;
             this.setState(function (prevState, props) {
                 return {
-                    selectedStateCode: clickedState,
+                    selectedStateCode: stateCode,
                     isLoading: true
                 };
             }, this.loadCountyData);
@@ -77,12 +80,12 @@ var UserInformation = function (_React$Component) {
     }, {
         key: 'handleCountySelect',
         value: function handleCountySelect(event) {
-            // this.setState((prevState, props) => {
-            //     return {
-            //         selectedCountyCode: event.target.value,
-            //     }
-            // });
-            console.log(this.state.selectedCountyCode);
+            var countyCode = event.target.value;
+            this.setState(function (prevState, props) {
+                return {
+                    selectedCountyCode: countyCode
+                };
+            });
         }
     }, {
         key: 'loadCountyData',
@@ -109,12 +112,31 @@ var UserInformation = function (_React$Component) {
     }, {
         key: 'updateVisualization',
         value: function updateVisualization(event) {
+            var _this2 = this;
+
+            console.log("Updating Viz");
             event.preventDefault();
             var controller = this;
             var data = {
                 income: controller.refs.incomeInput.value
-                // console.log(data);
             };
+
+            controller.setState(function (prevState, props) {
+                return {
+                    isLoading: true
+                };
+            }, function () {
+                fetch(buildURL(URL.GET_INCOME, _this2.state.selectedStateCode, _this2.state.selectedCountyCode)).then(function (response) {
+                    response.json().then(function (data) {
+                        controller.setState(function (prevState, props) {
+                            return {
+                                isLoading: false
+                            };
+                        });
+                        console.log(data);
+                    });
+                });
+            });
         }
     }, {
         key: 'render',
@@ -157,10 +179,10 @@ var UserInformation = function (_React$Component) {
                             })
                         )
                     ),
-                    React.createElement('input', { disabled: !this.isCountyDataAvailable(), type: 'text', ref: 'incomeInput', placeholder: 'Income' }),
+                    React.createElement('input', { disabled: !this.isCountyDataAvailable(), type: 'number', ref: 'incomeInput', placeholder: 'Income' }),
                     React.createElement(
                         'button',
-                        { disabled: !this.isCountyDataAvailable(), onClick: this.updateVisualization.bind(this) },
+                        { disabled: !this.isCountyDataAvailable(), onClick: this.updateVisualization },
                         'Submit Information'
                     )
                 )

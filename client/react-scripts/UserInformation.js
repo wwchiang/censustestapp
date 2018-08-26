@@ -1,5 +1,7 @@
 'use strict';
-var states = require('../data/state-codes.js');
+const states = require('../data/state-codes.js');
+var React = require('react');
+var ReactDOM = require('react-dom');
 
 const URL = Object.freeze({
     BASE: 'http://localhost:3000/',
@@ -38,6 +40,7 @@ class UserInformation extends React.Component {
 
     this.handleStateSelect = this.handleStateSelect.bind(this);
     this.handleCountySelect = this.handleCountySelect.bind(this);
+    this.updateVisualization = this.updateVisualization.bind(this);
   }
 
   componentDidMount() {
@@ -45,10 +48,10 @@ class UserInformation extends React.Component {
   }
 
   handleStateSelect(event) {
-    var clickedState = event.target.value;
+    var stateCode = event.target.value;
     this.setState((prevState, props) => {
         return {
-            selectedStateCode: clickedState,
+            selectedStateCode: stateCode,
             isLoading: true,
         }
     }, this.loadCountyData);
@@ -56,13 +59,12 @@ class UserInformation extends React.Component {
 
   
   handleCountySelect(event) {
-    // this.setState((prevState, props) => {
-    //     return {
-    //         selectedCountyCode: event.target.value,
-    //     }
-    // });
-    console.log(this.state.selectedCountyCode);
-
+    var countyCode = event.target.value;
+    this.setState((prevState, props) => {
+        return {
+            selectedCountyCode: countyCode,
+        }
+    });
   }
 
   loadCountyData() {
@@ -86,12 +88,29 @@ class UserInformation extends React.Component {
   }
 
   updateVisualization(event) {
+    console.log("Updating Viz");
     event.preventDefault();
     var controller = this;
     let data = {
         income: controller.refs.incomeInput.value,
     }
-    // console.log(data);
+    
+    controller.setState((prevState, props) => {
+        return {
+            isLoading: true,
+        }
+    }, () => {
+        fetch(buildURL(URL.GET_INCOME, this.state.selectedStateCode, this.state.selectedCountyCode)).then(function(response) {
+            response.json().then(function(data) {
+                controller.setState((prevState, props) => {
+                    return  {
+                        isLoading: false,
+                    }
+                });
+                console.log(data);
+            });
+        });
+    });
   }
 
   render() {
@@ -118,8 +137,8 @@ class UserInformation extends React.Component {
                         )}
                     </select>
                 </div>
-                <input disabled={!this.isCountyDataAvailable()} type="text" ref="incomeInput" placeholder="Income"/>
-                <button disabled={!this.isCountyDataAvailable()} onClick={this.updateVisualization.bind(this)}>Submit Information</button>
+                <input disabled={!this.isCountyDataAvailable()} type="number" ref="incomeInput" placeholder="Income"/>
+                <button disabled={!this.isCountyDataAvailable()} onClick={this.updateVisualization}>Submit Information</button>
             </form>
         </div>
     );
