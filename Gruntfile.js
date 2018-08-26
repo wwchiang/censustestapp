@@ -56,7 +56,7 @@ module.exports = function(grunt) {
     },
     shell: {
       nodemon: {
-          command: 'node_modules/nodemon/bin/nodemon.js --harmony server/index.js'
+          command: 'node node_modules/nodemon/bin/nodemon.js --harmony server/index.js'
       }
     },
 
