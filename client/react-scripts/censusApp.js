@@ -7,34 +7,27 @@ var UserInformation = require('./userInformation.js');
 class CensusApp extends React.Component {
   constructor(props) {
     super(props);
-
-    // this.state = {
-    //     jsonData: null,
-    //     stateCodes: states,
-    //     countyCodes: [],
-    //     selectedStateCode: states[0].code,
-    //     selectedCountyCode: "",
-    //     isLoading: false,
-    // }
-
-    // this.handleStateSelect = this.handleStateSelect.bind(this);
-    // this.handleCountySelect = this.handleCountySelect.bind(this);
-    // this.updateVisualization = this.updateVisualization.bind(this);
+    this.state = {
+      income: 0,
+      countyIncomeData: [],
+    }
+    this.updateIncomeData = this.updateIncomeData.bind(this);
   }
 
-  componentDidMount() {
-    // this.loadCountyData();
-  }
-
-  updateVisualization(event) {
-    
+  updateIncomeData(income, countyIncomeData) {
+    this.setState((prevState, props) => {
+      return {
+        income: income,
+        countyIncomeData: countyIncomeData,
+      }
+    });
   }
 
   render() {
     return (
         <div>
-            <UserInformation/>
-            <IncomeVisualization/>
+            <UserInformation updateIncomeData={this.updateIncomeData}/>
+            <IncomeVisualization income={this.state.income} countyIncomeData={this.state.countyIncomeData}/>
         </div>
     );
   }

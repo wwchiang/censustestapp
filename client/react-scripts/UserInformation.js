@@ -40,7 +40,7 @@ class UserInformation extends React.Component {
 
     this.handleStateSelect = this.handleStateSelect.bind(this);
     this.handleCountySelect = this.handleCountySelect.bind(this);
-    this.updateVisualization = this.updateVisualization.bind(this);
+    this.submitIncome = this.submitIncome.bind(this);
   }
 
   componentDidMount() {
@@ -87,14 +87,9 @@ class UserInformation extends React.Component {
       return !this.state.isLoading && this.state.countyCodes !== null && this.state.countyCodes.length > 0;
   }
 
-  updateVisualization(event) {
-    console.log("Updating Viz");
+  submitIncome(event) {
     event.preventDefault();
-    var controller = this;
-    let data = {
-        income: controller.refs.incomeInput.value,
-    }
-    
+    var controller = this;  
     controller.setState((prevState, props) => {
         return {
             isLoading: true,
@@ -107,7 +102,8 @@ class UserInformation extends React.Component {
                         isLoading: false,
                     }
                 });
-                console.log(data);
+                // console.log(data);
+                controller.props.updateIncomeData(controller.refs.incomeInput.value, data);
             });
         });
     });
@@ -138,7 +134,7 @@ class UserInformation extends React.Component {
                     </select>
                 </div>
                 <input disabled={!this.isCountyDataAvailable()} type="number" ref="incomeInput" placeholder="Income"/>
-                <button disabled={!this.isCountyDataAvailable()} onClick={this.updateVisualization}>Submit Information</button>
+                <button disabled={!this.isCountyDataAvailable()} onClick={this.submitIncome}>Submit Information</button>
             </form>
         </div>
     );

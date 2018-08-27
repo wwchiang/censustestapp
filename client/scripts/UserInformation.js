@@ -57,7 +57,7 @@ var UserInformation = function (_React$Component) {
 
         _this.handleStateSelect = _this.handleStateSelect.bind(_this);
         _this.handleCountySelect = _this.handleCountySelect.bind(_this);
-        _this.updateVisualization = _this.updateVisualization.bind(_this);
+        _this.submitIncome = _this.submitIncome.bind(_this);
         return _this;
     }
 
@@ -110,17 +110,12 @@ var UserInformation = function (_React$Component) {
             return !this.state.isLoading && this.state.countyCodes !== null && this.state.countyCodes.length > 0;
         }
     }, {
-        key: 'updateVisualization',
-        value: function updateVisualization(event) {
+        key: 'submitIncome',
+        value: function submitIncome(event) {
             var _this2 = this;
 
-            console.log("Updating Viz");
             event.preventDefault();
             var controller = this;
-            var data = {
-                income: controller.refs.incomeInput.value
-            };
-
             controller.setState(function (prevState, props) {
                 return {
                     isLoading: true
@@ -133,7 +128,8 @@ var UserInformation = function (_React$Component) {
                                 isLoading: false
                             };
                         });
-                        console.log(data);
+                        // console.log(data);
+                        controller.props.updateIncomeData(controller.refs.incomeInput.value, data);
                     });
                 });
             });
@@ -182,7 +178,7 @@ var UserInformation = function (_React$Component) {
                     React.createElement('input', { disabled: !this.isCountyDataAvailable(), type: 'number', ref: 'incomeInput', placeholder: 'Income' }),
                     React.createElement(
                         'button',
-                        { disabled: !this.isCountyDataAvailable(), onClick: this.updateVisualization },
+                        { disabled: !this.isCountyDataAvailable(), onClick: this.submitIncome },
                         'Submit Information'
                     )
                 )

@@ -20,38 +20,34 @@ var CensusApp = function (_React$Component) {
   function CensusApp(props) {
     _classCallCheck(this, CensusApp);
 
-    return _possibleConstructorReturn(this, (CensusApp.__proto__ || Object.getPrototypeOf(CensusApp)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (CensusApp.__proto__ || Object.getPrototypeOf(CensusApp)).call(this, props));
 
-    // this.state = {
-    //     jsonData: null,
-    //     stateCodes: states,
-    //     countyCodes: [],
-    //     selectedStateCode: states[0].code,
-    //     selectedCountyCode: "",
-    //     isLoading: false,
-    // }
-
-    // this.handleStateSelect = this.handleStateSelect.bind(this);
-    // this.handleCountySelect = this.handleCountySelect.bind(this);
-    // this.updateVisualization = this.updateVisualization.bind(this);
+    _this.state = {
+      income: 0,
+      countyIncomeData: []
+    };
+    _this.updateIncomeData = _this.updateIncomeData.bind(_this);
+    return _this;
   }
 
   _createClass(CensusApp, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      // this.loadCountyData();
+    key: 'updateIncomeData',
+    value: function updateIncomeData(income, countyIncomeData) {
+      this.setState(function (prevState, props) {
+        return {
+          income: income,
+          countyIncomeData: countyIncomeData
+        };
+      });
     }
-  }, {
-    key: 'updateVisualization',
-    value: function updateVisualization(event) {}
   }, {
     key: 'render',
     value: function render() {
       return React.createElement(
         'div',
         null,
-        React.createElement(UserInformation, null),
-        React.createElement(IncomeVisualization, null)
+        React.createElement(UserInformation, { updateIncomeData: this.updateIncomeData }),
+        React.createElement(IncomeVisualization, { income: this.state.income, countyIncomeData: this.state.countyIncomeData })
       );
     }
   }]);
