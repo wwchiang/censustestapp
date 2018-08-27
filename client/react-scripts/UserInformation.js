@@ -28,7 +28,6 @@ function buildURL(selector, stateCode = null, county = null) {
 class UserInformation extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = { liked: false };
     this.state = {
         jsonData: null,
         stateCodes: states,
@@ -102,7 +101,6 @@ class UserInformation extends React.Component {
                         isLoading: false,
                     }
                 });
-                // console.log(data);
                 controller.props.updateIncomeData(controller.refs.incomeInput.value, data);
             });
         });

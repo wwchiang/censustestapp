@@ -1,5 +1,4 @@
 'use strict';
-// var states = require('../data/state-codes.js');
 var React = require('react');
 var ReactVis = require('react-vis');
 

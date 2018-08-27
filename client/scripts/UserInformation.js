@@ -43,7 +43,6 @@ var UserInformation = function (_React$Component) {
     function UserInformation(props) {
         _classCallCheck(this, UserInformation);
 
-        // this.state = { liked: false };
         var _this = _possibleConstructorReturn(this, (UserInformation.__proto__ || Object.getPrototypeOf(UserInformation)).call(this, props));
 
         _this.state = {
@@ -128,7 +127,6 @@ var UserInformation = function (_React$Component) {
                                 isLoading: false
                             };
                         });
-                        // console.log(data);
                         controller.props.updateIncomeData(controller.refs.incomeInput.value, data);
                     });
                 });
